@@ -38,7 +38,7 @@ int leia_registro(char str[], int Tamanho, FILE *entrada)
 
 
 
-int importacao(char *NomeArquivoImportacao){
+int importacao(char NomeArquivoImportacao[]){
 
 FILE *entrada;
 char registro[64];

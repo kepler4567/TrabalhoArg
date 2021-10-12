@@ -22,13 +22,13 @@ void LeComando(char comando[], FILE *entrada){
     }
 }
 
-int recebeChave(char linha[])
+int recebeChave(char comando[])
 {
     char Key[7];
     int i, j = 2;
     for (i = 0; i < 6; i++)
     {
-        Key[i] = linha[j];
+        Key[i] = comando[j];
         j++;
     }
     Key[j] = '\0';
@@ -36,13 +36,13 @@ int recebeChave(char linha[])
     return atoi(Key);
 }
 
-void leRegistro(char Registro[], char linha[])
+void leRegistro(char Registro[], char comando[])
 {
     int i = 0, j = 2;
 
-    while (linha[i] != '\0')
+    while (comando[i] != '\0')
     {
-        Registro[i] = linha[j];
+        Registro[i] = comando[j];
         i++;
         j++;
     }
@@ -50,9 +50,9 @@ void leRegistro(char Registro[], char linha[])
 
 
 
-int executa_operacoes(char *Arquivo){
+int executa_operacoes(char Arquivo[]){
     char parametro;
-    int validador = 1, chave;
+    int chave;
     FILE *entrada;
     FILE *DadosDat;
     char comando[67], opcao, registro[65];
