@@ -8,11 +8,13 @@
 
 
 void LeComando(char comando[], FILE *entrada){
+   
+   
     int i = 0;
     char c = fgetc(entrada);
     if (c != EOF)
     {
-        while (c != '\n' || feof(entrada))
+        while (c != '\n')
         {
             comando[i] = c;
             i++;
@@ -20,6 +22,8 @@ void LeComando(char comando[], FILE *entrada){
         }
         comando[i] = '\0';
     }
+
+
 }
 
 int recebeChave(char comando[])
@@ -38,7 +42,8 @@ int recebeChave(char comando[])
 
 void leRegistro(char Registro[], char comando[])
 {
-    int i = 0, j = 2;
+    int i = 0;
+    int j = 2;
 
     while (comando[i] != '\0')
     {
@@ -51,19 +56,23 @@ void leRegistro(char Registro[], char comando[])
 
 
 int executa_operacoes(char Arquivo[]){
-    char parametro;
+
+
+    
+    
     int chave;
     FILE *entrada;
     FILE *DadosDat;
     char comando[67], opcao, registro[65];
 
-    
+   
 
-
+    DadosDat = fopen("Dados.dat", "r");
     entrada = fopen(Arquivo, "r");
 
      while (!feof(entrada))
     {
+        
         LeComando(comando, entrada);
         opcao = comando[0];
                 
@@ -71,7 +80,7 @@ int executa_operacoes(char Arquivo[]){
         if (opcao == 'b')
         {
             chave = recebeChave(comando);
-            printf("Operacao de busca ativada na chave: %s\n", chave);
+            printf("Operacao de busca ativada na chave: %i\n", chave);
             OperacaoBusca(chave);
         }
         else if (opcao == 'i')
@@ -83,7 +92,7 @@ int executa_operacoes(char Arquivo[]){
         else if (opcao == 'r')
         {
             chave = recebeChave(comando);
-            printf("Operacao de remocao ativada na chave: %s\n", chave);
+            printf("Operacao de remocao ativada na chave: %i\n", chave);
             OperacaoRemocao(chave);
         }
         else 
@@ -99,7 +108,7 @@ int executa_operacoes(char Arquivo[]){
     
 
 fclose(entrada);
-        
+fclose(DadosDat);        
     
 
 

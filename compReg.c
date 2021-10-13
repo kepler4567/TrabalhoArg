@@ -8,7 +8,7 @@ int CalculabyteOffSet(int RRN){
     ByteOffSet = RRN*64;
 
     
-
+ return ByteOffSet;
 }
 
 char calculaReg(int posicao)

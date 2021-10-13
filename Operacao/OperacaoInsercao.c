@@ -5,6 +5,8 @@
 
 int OperacaoInsercao( char *registro)
 {
+
+    
     // FILE *DadosDat; 
     // int  byte_offset, seek;
 
@@ -20,7 +22,7 @@ int OperacaoInsercao( char *registro)
 
     // if (cab.ped != -1)
     // {
-    //     *seek = cab.ped;
+    //     seek = cab.ped;
     //     byte_offset_registro = cab.ped * 64 + sizeof(cab) + sizeof(char);
     //     fseek(DadosDat, byte_offset_registro, SEEK_SET);
     //     fread(&ped, sizeof(int), 1, DadosDat);
@@ -30,7 +32,7 @@ int OperacaoInsercao( char *registro)
     //     cab.ped = ped;
     //     rewind(DadosDat);
     //     fwrite(&cab, sizeof(cab), 1, DadosDat);
-    //     *byte_offset = byte_offset_registro;
+    //     byte_offset = byte_offset_registro;
     //     return false;
     // }
     // else
@@ -44,5 +46,5 @@ int OperacaoInsercao( char *registro)
     //     return true;
     // }
     
-    
+    return 0;
 }

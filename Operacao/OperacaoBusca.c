@@ -5,6 +5,8 @@
 int OperacaoBusca(int chave){
     
 
+    
+
     // char registro[64];
     // char key[6];
     // FILE *entrada;
@@ -36,6 +38,8 @@ int OperacaoBusca(int chave){
 
   
     // printf("Registro nao encontrado!!!\n");
-    // return EXIT_FAILURE;
-}
+ 
+ 
+ return 0;
+ }
 
