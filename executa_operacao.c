@@ -51,6 +51,12 @@ void leRegistro(char Registro[], char comando[])
         i++;
         j++;
     }
+    while (i<=64)
+    {
+        Registro[i] = '\0';
+        i++;
+    }
+    
 }
 
 
@@ -63,7 +69,7 @@ int executa_operacoes(char Arquivo[]){
     int chave;
     FILE *entrada;
     FILE *DadosDat;
-    char comando[67], opcao, registro[65];
+    char comando[67], opcao, registro[64];
 
    
 

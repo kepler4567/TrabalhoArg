@@ -19,35 +19,42 @@ void OperacaoInsercao( char *registro)
         
     }
 
-    while (registro[RRN] != EOF)
+    while (!feof(DadosDat))
     {
         
-        fread(registro, sizeof(char) ,64,DadosDat);
+        fread(registro2, 64,1,DadosDat);
         
-        if (registro[0] == '*')
+        if (registro2[0] == '*')
         {
             ped = RRN;
             verificador = 1;
         }
         
         
-        RRN++;
+        RRN = RRN+1;
         
     }
 
 
     if (verificador)
     {
-            
+
+            byte_offset_registro = ped * 64;
+            fseek(DadosDat,byte_offset_registro,SEEK_SET);
+            fwrite(registro, 64, 1, DadosDat);
+            printf("Local: RRN = %i (byte-offset %d) [reutilizado]\n\n", ped, byte_offset_registro);
+            rewind(DadosDat);
     }
     else 
     {
             byte_offset_registro = RRN * 64;
-            fwrite(registro, 64, byte_offset_registro, DadosDat);
-            printf("Local: RRN = %i (byte-offset %d) [reutilizado]\n", RRN, byte_offset_registro);
+            fseek(DadosDat,byte_offset_registro,SEEK_SET);
+            fwrite(registro,64, 1, DadosDat);
+            printf("Local: RRN = %i (byte-offset %d) [reutilizado]\n\n", RRN, byte_offset_registro);
+            rewind(DadosDat);
     }
             
         
-     
+   fclose(DadosDat);  
 
 }
