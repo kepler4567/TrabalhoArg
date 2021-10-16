@@ -2,63 +2,51 @@
 #include <stdlib.h>
 #include <string.h>
 
-void OperacaoInsercao( char *registro)
+void OperacaoInsercao(char *registro)
 {
 
-    
-    FILE *DadosDat; 
-<<<<<<< HEAD
-    int   RRN=0, ped;
-=======
-    int  seek, RRN=0, ped;
->>>>>>> ec4ba109d28125041747f066ff26aa2e4d41860f
+    FILE *DadosDat;
+    int RRN = 0, ped;
     char registro2[64];
     int byte_offset_registro;
-    int verificador=0;
-
+    int verificador = 0;
 
     if ((DadosDat = fopen("Dados.dat", "r+b")) == NULL)
     {
         fprintf(stderr, "Erro ao abrir o arquivo Dados.dat");
-        
     }
 
     while (!feof(DadosDat))
     {
-        
-        fread(registro2, 64,1,DadosDat);
-        
+
+        fread(registro2, 64, 1, DadosDat);
+
         if (registro2[0] == '*')
         {
             ped = RRN;
             verificador = 1;
         }
-        
-        
-        RRN = RRN+1;
-        
-    }
 
+        RRN = RRN + 1;
+    }
 
     if (verificador)
     {
 
-            byte_offset_registro = ped * 64;
-            fseek(DadosDat,byte_offset_registro,SEEK_SET);
-            fwrite(registro, 64, 1, DadosDat);
-            printf("Local: RRN = %i (byte-offset %d) [reutilizado]\n\n", ped, byte_offset_registro);
-            rewind(DadosDat);
+        byte_offset_registro = ped * 64;
+        fseek(DadosDat, byte_offset_registro, SEEK_SET);
+        fwrite(registro, 64, 1, DadosDat);
+        printf("Local: RRN = %i (byte-offset %d) [reutilizado]\n\n", ped, byte_offset_registro);
+        rewind(DadosDat);
     }
-    else 
+    else
     {
-            byte_offset_registro = RRN * 64;
-            fseek(DadosDat,byte_offset_registro,SEEK_SET);
-            fwrite(registro,64, 1, DadosDat);
-            printf("Local: RRN = %i (byte-offset %d) [reutilizado]\n\n", RRN, byte_offset_registro);
-            rewind(DadosDat);
+        byte_offset_registro = RRN * 64;
+        fseek(DadosDat, byte_offset_registro, SEEK_SET);
+        fwrite(registro, 64, 1, DadosDat);
+        printf("Local: RRN = %i (byte-offset %d) [reutilizado]\n\n", RRN, byte_offset_registro);
+        rewind(DadosDat);
     }
-            
-        
-   fclose(DadosDat);  
 
+    fclose(DadosDat);
 }
