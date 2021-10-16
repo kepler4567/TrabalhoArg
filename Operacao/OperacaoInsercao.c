@@ -1,48 +1,60 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
-int OperacaoInsercao( char *registro)
+void OperacaoInsercao( char *registro)
 {
-    // FILE *DadosDat; 
-    // int  byte_offset, seek;
 
-    // if ((DadosDat = fopen("dados.dat", "r+b")) == NULL)
-    // {
-    //     fprintf(stderr, "Erro ao abrir o arquivo Dados.dat");
-    //     return EXIT_FAILURE;
-    // }
-
-    //   int byte_offset_registro, ped;
-    //   rewind(DadosDat);
-    //   fread(&cab, sizeof(cab), 1, DadosDat);
-
-    // if (cab.ped != -1)
-    // {
-    //     *seek = cab.ped;
-    //     byte_offset_registro = cab.ped * 64 + sizeof(cab) + sizeof(char);
-    //     fseek(DadosDat, byte_offset_registro, SEEK_SET);
-    //     fread(&ped, sizeof(int), 1, DadosDat);
-    //     byte_offset_registro = cab.ped * 64 + sizeof(cab);
-    //     fseek(DadosDat, byte_offset_registro, SEEK_SET);
-    //     fwrite(registro, 64, 1, DadosDat);
-    //     cab.ped = ped;
-    //     rewind(DadosDat);
-    //     fwrite(&cab, sizeof(cab), 1, DadosDat);
-    //     *byte_offset = byte_offset_registro;
-    //     return false;
-    // }
-    // else
-    // {
-    //     byte_offset_registro = cab.cont_reg * 64 + sizeof(cab);
-    //     fseek(DadosDat, byte_offset_registro, SEEK_SET);
-    //     fwrite(registro, 64, 1, DadosDat);
-    //     cab.cont_reg++;
-    //     rewind(DadosDat);
-    //     fwrite(&cab, sizeof(cab), 1, DadosDat);
-    //     return true;
-    // }
     
-    
+    FILE *DadosDat; 
+    int   RRN=0, ped;
+    char registro2[64];
+    int byte_offset_registro;
+    int verificador=0;
+
+
+    if ((DadosDat = fopen("Dados.dat", "r+b")) == NULL)
+    {
+        fprintf(stderr, "Erro ao abrir o arquivo Dados.dat");
+        
+    }
+
+    while (!feof(DadosDat))
+    {
+        
+        fread(registro2, 64,1,DadosDat);
+        
+        if (registro2[0] == '*')
+        {
+            ped = RRN;
+            verificador = 1;
+        }
+        
+        
+        RRN = RRN+1;
+        
+    }
+
+
+    if (verificador)
+    {
+
+            byte_offset_registro = ped * 64;
+            fseek(DadosDat,byte_offset_registro,SEEK_SET);
+            fwrite(registro, 64, 1, DadosDat);
+            printf("Local: RRN = %i (byte-offset %d) [reutilizado]\n\n", ped, byte_offset_registro);
+            rewind(DadosDat);
+    }
+    else 
+    {
+            byte_offset_registro = RRN * 64;
+            fseek(DadosDat,byte_offset_registro,SEEK_SET);
+            fwrite(registro,64, 1, DadosDat);
+            printf("Local: RRN = %i (byte-offset %d) [reutilizado]\n\n", RRN, byte_offset_registro);
+            rewind(DadosDat);
+    }
+            
+        
+   fclose(DadosDat);  
+
 }
