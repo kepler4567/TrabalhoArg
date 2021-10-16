@@ -5,18 +5,8 @@
 int encontraRegistro(char *buffer, int tam, char *chave, int num, int prox)
 {
 
-<<<<<<< HEAD
     char *pt;
     char registro[tam];
-=======
-    
-
-    // char registro[64];
-    // char key[6];
-    // FILE *entrada;
-    // int RRN = 0;
-    // int ByteOffSet;
->>>>>>> ec4ba109d28125041747f066ff26aa2e4d41860f
 
     if (strcmp(buffer, "") == 0)
     {
@@ -40,27 +30,8 @@ int encontraRegistro(char *buffer, int tam, char *chave, int num, int prox)
         return 0;
     }
 
-<<<<<<< HEAD
     return strlen(registro);
 }
-=======
-    //         ByteOffSet = RRN*64;
-    //         printf("registro %s encontrado\n Conteudo = %s (RRN = %i - Byte Offset = %i", key, registro, RRN, ByteOffSet);  
-            
-    //         return EXIT_SUCCESS;
-        
-    //     }else{
-    //         RRN++;
-    //     }
-    // }
-
-  
-    // printf("Registro nao encontrado!!!\n");
- 
- 
- return 0;
- }
->>>>>>> ec4ba109d28125041747f066ff26aa2e4d41860f
 
 int OperacaoBusca(char *chave)
 {
