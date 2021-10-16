@@ -60,7 +60,7 @@ if ((SAIDA = fopen("Dados.dat","wb")) == NULL) {
 while (registro[i] != EOF)
 {
 
-   verificador = leia_registro(registro, 64, entrada );
+   verificador = leia_registro(registro, 64, entrada);
    
    fwrite(&registro, 64, 1, SAIDA);
 

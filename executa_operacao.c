@@ -6,10 +6,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+void LeComando(char comando[], FILE *entrada)
+{
 
-void LeComando(char comando[], FILE *entrada){
-   
-   
     int i = 0;
     char c = fgetc(entrada);
     if (c != EOF)
@@ -22,8 +21,6 @@ void LeComando(char comando[], FILE *entrada){
         }
         comando[i] = '\0';
     }
-
-
 }
 
 int recebeChave(char comando[])
@@ -51,57 +48,51 @@ void leRegistro(char Registro[], char comando[])
         i++;
         j++;
     }
-    while (i<=64)
+    while (i <= 64)
     {
         Registro[i] = '\0';
         i++;
     }
-    
 }
 
+int executa_operacoes(char Arquivo[])
+{
 
-
-int executa_operacoes(char Arquivo[]){
-
-
-    
-    
     int chave;
+    char key[7];
     FILE *entrada;
     FILE *DadosDat;
     char comando[67], opcao, registro[64];
 
-   
-
     DadosDat = fopen("Dados.dat", "r");
     entrada = fopen(Arquivo, "r");
 
-     while (!feof(entrada))
+    while (!feof(entrada))
     {
-        
         LeComando(comando, entrada);
         opcao = comando[0];
-                
-        
+
         if (opcao == 'b')
         {
             chave = recebeChave(comando);
-            printf("Operacao de busca ativada na chave: %i\n", chave);
-            OperacaoBusca(chave);
+            printf("Busca pelo registro de chave '%i'\n", chave);
+            itoa(chave, key, 10);
+            OperacaoBusca(key);
         }
         else if (opcao == 'i')
         {
-            leRegistro(registro,comando);
-            printf("Operacao de insercao ativada do registro: %s\n",  registro);
+            leRegistro(registro, comando);
+            printf("Insercao do registro de chave '%s'\n", registro);
             OperacaoInsercao(registro);
         }
         else if (opcao == 'r')
         {
             chave = recebeChave(comando);
-            printf("Operacao de remocao ativada na chave: %i\n", chave);
-            OperacaoRemocao(chave);
+            printf("Remocao do registro de chave '%i'\n", chave);
+            itoa(chave, key, 10);
+            OperacaoRemocao(key);
         }
-        else 
+        else
         {
             fprintf(stderr, "Argumentos incorretos!\n");
             fprintf(stderr, "Modo de uso:\n");
@@ -109,17 +100,10 @@ int executa_operacoes(char Arquivo[]){
             fprintf(stderr, "$ (b|i|r)");
             exit(EXIT_FAILURE);
         }
-
     }
-    
 
-fclose(entrada);
-fclose(DadosDat);        
-    
+    fclose(entrada);
+    fclose(DadosDat);
 
-
-
-
-    
     return EXIT_SUCCESS;
 }
