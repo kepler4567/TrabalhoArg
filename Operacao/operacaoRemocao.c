@@ -8,6 +8,7 @@ int achaRegistro(char *buffer, int tam, char *chave, int num, int prox)
     char *pt;
     char registro[tam];
 
+<<<<<<< HEAD
     if (strcmp(buffer, "") == 0)
     {
         return prox + 1;
@@ -78,8 +79,16 @@ int OperacaoRemocao(char *chave)
         prox += busca;
         num++;
     }
+=======
+    
+
+>>>>>>> ec4ba109d28125041747f066ff26aa2e4d41860f
 
     fclose(file);
 
+<<<<<<< HEAD
     return 0;
+=======
+return 0;
+>>>>>>> ec4ba109d28125041747f066ff26aa2e4d41860f
 }

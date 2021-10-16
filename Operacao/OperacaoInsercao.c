@@ -7,7 +7,11 @@ void OperacaoInsercao( char *registro)
 
     
     FILE *DadosDat; 
+<<<<<<< HEAD
     int   RRN=0, ped;
+=======
+    int  seek, RRN=0, ped;
+>>>>>>> ec4ba109d28125041747f066ff26aa2e4d41860f
     char registro2[64];
     int byte_offset_registro;
     int verificador=0;
