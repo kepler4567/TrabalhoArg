@@ -26,7 +26,7 @@ int encontraRegistro(char *buffer, int tam, char *chave, int num, int prox)
 
     if (strcmp(chave, chaveAtual) == 0)
     {
-        printf("\n%s (RRN = %d - byte-offset %d)\n", registro, num, (num * 64) + 4);
+        printf("\n%s (RRN = %d - byte-offset %d)\n", registro, num, (num * 64));
         return 0;
     }
 
@@ -68,7 +68,6 @@ int OperacaoBusca(char *chave)
         if (busca == 0)
         {
             encontrou = 1;
-            printf("%i", num);
             return EXIT_SUCCESS;
         }
         prox += busca;
